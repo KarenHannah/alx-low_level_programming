@@ -2,7 +2,7 @@
 /**
  * strncat - concatenate two strings but add inputted number of byte
  * @dest: string to be appended upon
- * @sc: string to be completed at end of dest
+ * @src: string to be completed at end of dest
  * @n:integer parameter to compare index to
  * Return: returns new concatenated string
  */
