@@ -1,90 +1,53 @@
-#include "main.h"                                                                                                                     
+#include "main.h"
 
-                                                                                                                                      
 
-/**                                                                                                                                   
 
- * rot13 - Encodes a string using rot13.                                                                                                    
+/**
 
- *                                                                                                                                    
+ * rot13 - encodes a string into rot13
 
- * Return: A pointer to the encoded string.                                                                                           
+ * @s: string to encode
+
+ *
+
+ * Return: address of s
 
  */
 
-char *rot13(char *str)                                                                                                                
+char *rot13(char *s)
 
-{                                                                                                                                     
+{
 
-        int indx1 = 0, indx2;                                                                                                         
+	int i, j;
 
-        char alphabet[52] = {'A', 'B', 'C', 'D', 'E', 'F',                                                                            
+	char a[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-                             'G', 'H', 'I', 'J', 'K', 'L',                                                                            
+	char b[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 
-                             'M', 'N', 'O', 'P', 'Q', 'R',                                                                            
 
-                             'S', 'T', 'U', 'V', 'W', 'X',                                                                            
 
-                             'Y', 'Z', 'a', 'b', 'c', 'd',                                                                            
+	for (i = 0; *(s + i); i++)
 
-                             'e', 'f', 'g', 'h', 'i', 'j',                                                                            
+	{
 
-                             'k', 'l', 'm', 'n', 'o', 'p',                                                                            
+		for (j = 0; j < 52; j++)
 
-                             'q', 'r', 's', 't', 'u', 'v',                                                                            
+		{
 
-                             'w', 'x', 'y', 'z'};                                                                                     
+			if (a[j] == *(s + i))
 
-        char rot13key[52] = {'N', 'O', 'P', 'Q', 'R', 'S',                                                                            
+			{
 
-                             'T', 'U', 'V', 'W', 'X', 'Y',                                                                            
+				*(s + i) = b[j];
 
-                             'Z', 'A', 'B', 'C', 'D', 'E',                                                                            
+				break;
 
-                             'F', 'G', 'H', 'I', 'J', 'K',                                                                            
+			}
 
-                             'L', 'M', 'n', 'o', 'p', 'q',                                                                            
+		}
 
-                             'r', 's', 't', 'u', 'v', 'w',                                                                            
+	}
 
-                             'x', 'y', 'z', 'a', 'b', 'c',                                                                            
-
-                             'd', 'e', 'f', 'g', 'h', 'i',                                                                            
-
-                             'j', 'k', 'l', 'm'};                                                                                     
-
-                                                                                                                                      
-
-        while (str[indx1])                                                                                                            
-
-        {                                                                                                                             
-
-                for (indx2 = 0; indx2 < 52; indx2++)                                                                                  
-
-                {                                                                                                                     
-
-                        if (str[indx1] == alphabet[indx2])                                                                            
-
-                        {                                                                                                             
-
-                                str[indx1] = rot13key[indx2];                                                                         
-
-                                break;                                                                                                
-
-                        }                                                                                                             
-
-                }                                                                                                                     
-
-                                                                                                                                      
-
-                indx1++;                                                                                                              
-
-        }                                                                                                                             
-
-                                                                                                                                      
-
-        return (str);                                                                                                                 
+	return (s);
 
 }
-
