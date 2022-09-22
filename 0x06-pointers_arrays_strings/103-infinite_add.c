@@ -1,92 +1,104 @@
-#include "main.h"
+ #include "main.h"                                                                                                                       
 
+                                                                                                                                        
 
+char *add_strings(char *n1, char *n2, char *r, int r_index);                                                                            
 
-/**
+char *infinite_add(char *n1, char *n2, char *r, int size_r);                                                                            
 
- * infinite_add - adds two numbers
+                                                                                                                                        
 
- * @n1: first number
+/**                                                                                                                                     
 
- * @n2: second number
+ * add_strings - Adds the numbers stored in two strings.                                                                                
 
- * @r: buffer for result
+ * @n1: The string containing the first number to be added.                                                                             
 
- * @size_r: buffer size
+ * @n2: The string containing the second number to be added.                                                                            
 
- *
+ * @r: The buffer to store the result.                                                                                                  
 
- * Return: address of r or 0
+ * @r_index: The current index of the buffer.                                                                                           
 
- */
+ *                                                                                                                                      
 
-char *infinite_add(char *n1, char *n2, char *r, int size_r)
+ * Return: If r can store the sum - a pointer to the result.                                                                            
 
-{
+ *         If r cannot store the sum - 0.                                                                                               
 
-	int i, j, k, l, m, n;
+ */                                                                                                                                     
 
+char *add_strings(char *n1, char *n2, char *r, int r_index)                                                                             
 
+{                                                                                                                                       
 
-	for (i = 0; n1[i]; i++)
+        int num, tens = 0;                                                                                                                                
 
-		;
+        
 
-	for (j = 0; n2[j]; j++)
+        for (; *n1 && *n2; n1--, n2--, r_index--)                                                                                       
 
-		;
+        {                                                                                                                               
 
-	if (i > size_r || j > size_r)
+                num = (*n1 - '0') + (*n2 - '0');                                                                                        
 
-		return (0);
+                num += tens;                                                                                                            
 
-	m = 0;
+                *(r + r_index) = (num % 10) + '0';                                                                                      
 
-	for (i -= 1, j -= 1, k = 0; k < size_r - 1; i--, j--, k++)
+                tens = num / 10;                                                                                                        
 
-	{
+        }                                                                                                                               
 
-		n = m;
+                                                                                                                                        
 
-		if (i >= 0)
+        for (; *n1; n1--, r_index--)                                                                                                    
 
-			n += n1[i] - '0';
+        {                                                                                                                               
 
-		if (j >= 0)
+                num = (*n1 - '0') + tens;                                                                                               
 
-			n += n2[j] - '0';
+                *(r + r_index) = (num % 10) + '0';                                                                                      
 
-		if (i < 0 && j < 0 && n == 0)
+                tens = num / 10;                                                                                                        
 
-		{
+        }                                                                                                                               
 
-			break;
+                                                                                                                                        
 
-		}
+        for (; *n2; n2--, r_index--)                                                                                                    
 
-		m = n / 10;
+        {                                                                                                                               
 
-		r[k] = n % 10 + '0';
+                num = (*n2 - '0') + tens;                                                                                               
 
-	}
+                *(r + r_index) = (num % 10) + '0';                                                                                      
 
-	r[k] = '\0';
+                tens = num / 10;                                                                                                        
 
-	if (i >= 0 || j >= 0 || m)
+        }                                                                                                                               
 
-		return (0);
+                                                                                                                                        
 
-	for (k -= 1, l = 0; l < k; k--, l++)
+        if (tens && r_index >= 0)                                                                                                       
 
-	{
+        {                                                                                                                               
 
-		m = r[k];
+                *(r + r_index) = (tens % 10) + '0';                                                                                     
 
-		r[k] = r[l];
+                return (r + r_index);                                                                                                   
 
-		r[l] = m;
+        }                                                                                                                               
 
-	}
+                                                                                                                                        
 
-	return (r);
+        else if (tens && r_index < 0)                                                                                                   
+
+                return (0);                                                                                                             
+
+                                                                                                                                        
+
+        return (r + r_index + 1);                                                                                                       
+
+}
 
