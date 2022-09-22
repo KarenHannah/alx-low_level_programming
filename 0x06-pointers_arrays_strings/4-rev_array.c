@@ -4,39 +4,33 @@
 
 /**                                                                                                                                  
 
- * _strcmp - Compares pointers to two strings.                                                                                       
+ * reverse_array - Reverses the content of an array of integers.                                                                     
 
- * @s1: A pointer to the first string to be compared.                                                                                
+ * @a: The array of integers to be reversed.                                                                                         
 
- * @s2: A pointer to the second string to be compared.                                                                               
-
- *                                                                                                                                   
-
- * Return: If str1 < str2, the negative difference of the first unmatched char                                                       
-
- *         If str1 == str2, 0.                                                                                                       
-
- *         If str1 > str2, the positive difference of the first unmatched char                                                       
+ * @n: The number of elements in the array.                                                                                          
 
  */                                                                                                                                  
 
-int _strcmp(char *s1, char *s2)                                                                                                      
+void reverse_array(int *a, int n)                                                                                                    
 
 {                                                                                                                                    
 
-        while (*s1 && *s2 && *s1 == *s2)                                                                                             
-
-        {                                                                                                                            
-
-                s1++;                                                                                                                
-
-                s2++;                                                                                                                
-
-        }                                                                                                                            
+        int tmp, index;                                                                                                              
 
                                                                                                                                      
 
-        return (*s1 - *s2);                                                                                                          
+        for (index = n - 1; index >= n / 2; index--)                                                                                 
+
+        {                                                                                                                            
+
+                tmp = a[n - 1 - index];                                                                                              
+
+                a[n - 1 - index] = a[index];                                                                                         
+
+                a[index] = tmp;                                                                                                      
+
+        }                                                                                                                            
 
 }
 
