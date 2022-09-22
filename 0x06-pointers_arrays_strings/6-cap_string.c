@@ -1,62 +1,76 @@
-#include "main.h"
+#include "main.h"                                                                                                                     
 
+                                                                                                                                      
 
+/**                                                                                                                                   
 
-/**
+ * cap_string - Capitalizes all words of a string.                                                                                    
 
- * cap_string - capitalizes all words in a string
+ * @str: The string to be capitalized.                                                                                                
 
- * @s: string to capitalize
+ *                                                                                                                                    
 
- *
+ * Return: A pointer to the changed string.                                                                                           
 
- * Return: address of s
+ */                                                                                                                                   
 
- */
+char *cap_string(char *str)                                                                                                           
 
-char *cap_string(char *s)
+{                                                                                                                                     
 
-{
+        int index = 0;                                                                                                                
 
-	int i = 0, j;
+                                                                                                                                      
 
-	char a[] = " \t\n,;.!?\"(){}";
+        while (str[index])                                                                                                            
 
+        {                                                                                                                             
 
+                while (!(str[index] >= 'a' && str[index] <= 'z'))                                                                     
 
-	while (*(s + i))
+                        index++;                                                                                                      
 
-	{
+                                                                                                                                      
 
-		if (*(s + i) >= 'a' && *(s + i) <= 'z')
+                if (str[index - 1] == ' ' ||                                                                                          
 
-		{
+                    str[index - 1] == '\t' ||                                                                                         
 
-			if (i == 0)
+                    str[index - 1] == '\n' ||                                                                                         
 
-				*(s + i) -= 'a' - 'A';
+                    str[index - 1] == ',' ||                                                                                          
 
-			else
+                    str[index - 1] == ';' ||                                                                                          
 
-			{
+                    str[index - 1] == '.' ||                                                                                          
 
-				for (j = 0; j <= 12; j++)
+                    str[index - 1] == '!' ||                                                                                          
 
-				{
+                    str[index - 1] == '?' ||                                                                                          
 
-					if (a[j] == *(s + i - 1))
+                    str[index - 1] == '"' ||                                                                                          
 
-						*(s + i) -= 'a' - 'A';
+                    str[index - 1] == '(' ||                                                                                          
 
-				}
+                    str[index - 1] == ')' ||                                                                                          
 
-			}
+                    str[index - 1] == '{' ||                                                                                          
 
-		}
+                    str[index - 1] == '}' ||                                                                                          
 
-		i++;
+                    index == 0)                                                                                                       
 
-	}
+                        str[index] -= 32;                                                                                             
 
-	return (s);
+                                                                                                                                      
+
+                index++;                                                                                                              
+
+        }                                                                                                                             
+
+                                                                                                                                      
+
+        return (str);                                                                                                                 
+
+}
 
