@@ -1,51 +1,49 @@
-#include <stdio.h>
-
 #include "main.h"
 
 
 
 /**
 
-*more_numbers - prints numbers to 14
+* rev_string - Reverses a string
 
-*
+* @s: Input string
 
-*Return: returns nothing
+* Return: String in reverse
 
-*/
+**/
 
 
 
-void more_numbers(void)
+void rev_string(char *s)
 
 {
 
-	int n1, n2;
+	char rev = s[0];
+
+	int counter = 0;
+
+	int i;
 
 
 
-	for (n1 = 0; n1 < 10; n1++)
+	while (s[counter] != '\0')
+
+		counter++;
+
+	for (i = 0; i < counter; i++)
 
 	{
 
-		for (n2 = 0; n2 <= 14; n2++)
+		counter--;
 
-		{
+		rev = s[i];
 
-			if (n2 > 9)
+		s[i] = s[counter];
 
-			{
-
-				putchar((n2 / 10) + '0');
-
-			}
-
-			putchar((n2 % 10) + '0');
-
-		}
-
-		putchar(10);
+		s[counter] = rev;
 
 	}
 
 }
+
+
